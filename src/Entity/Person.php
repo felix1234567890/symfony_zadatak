@@ -6,6 +6,7 @@ use App\Repository\PersonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PersonRepository::class)
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Person
 {
+    const ROLES = ['actor', 'director', 'producer', 'other'];
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -22,21 +24,25 @@ class Person
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="First name should not be blank")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Last name should not be blank")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Date(message="This is not a valid date")
      */
     private $dob;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Choice(choices="Person::ROLES", message="This is not a valid role")
      */
     private $role;
 
