@@ -42,7 +42,7 @@ class Person
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Choice(choices="Person::ROLES", message="This is not a valid role")
+     * @Assert\Choice(choices="PersonFixtures::ROLES", message="This is not a valid role")
      */
     private $role;
 

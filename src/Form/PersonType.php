@@ -2,39 +2,34 @@
 
 namespace App\Form;
 
-use App\Entity\Movie;
+use App\Entity\Person;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MovieType extends AbstractType
+class PersonType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class,[
-                'label' => 'Title',
+            ->add('firstName', TextType::class, [
+                'label' => 'First name',
                 'attr' => [
-                    'placeholder' => 'Enter movie title'
+                    "placeholder" => 'First name'
                 ]
             ])
-            ->add('description',TextareaType::class, [
-                'label' => 'Description',
-                "required" => false,
-                'attr' => [
-                    'placeholder' => 'Enter movie description'
-                ]
-            ])
-            ->add('releaseYear', IntegerType::class, [
-                'label' => 'Year of release',
-                'attr' => [
-                    'placeholder' => "Enter movie's year of release",
-                    "min"=> 1900,
-                    "max"=>2020,
+            ->add('lastName')
+            ->add('dob', BirthdayType::class)
+            ->add('role', ChoiceType::class,[
+                'choices' => [
+                    'Actor' => 'actor',
+                    'Director' => 'director',
+                    'Producer' => 'producer',
+                    'Other' => 'other'
                 ]
             ])
             ->add(
@@ -53,7 +48,7 @@ class MovieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Movie::class,
+            'data_class' => Person::class,
         ]);
     }
 }

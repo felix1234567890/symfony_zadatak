@@ -20,7 +20,7 @@ class PersonRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Person[] Returns an array of Person objects
+    //  * @return PersonFixtures[] Returns an array of PersonFixtures objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PersonRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Person
+    public function findOneBySomeField($value): ?PersonFixtures
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

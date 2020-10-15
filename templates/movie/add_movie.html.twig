@@ -6,7 +6,8 @@
    <h1 class="text-center">Add movie</h1>
    <div class="row justify-content-center">
       <div class="col-md-6">
-         {{ form(movieForm) }}
+         {{ form_errors(movieForm) }}
+         {{ form(movieForm,{'attr': {'novalidate': 'novalidate'}}) }}
       </div>
    </div>
 
