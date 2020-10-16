@@ -10,12 +10,15 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ movie.title }}</h5>
                         <p class="card-text">{{ movie.description }}</p>
+                      {% if movie.getPeople() | length > 0 %}
                         <p>Cast:</p>
                         <ul>
                             {% for person in movie.getPeople() %}
                                 <p>{{ person.firstName }} {{ person.lastName }} - {{ person.role }}</p>
                             {% endfor %}
                         </ul>
+                        {% endif %}
+                        <a href="{{ path('add_person', {id:movie.id}) }}" class="btn btn-primary">Add cast member</a>
                     </div>
                 </div>
             </div>

@@ -17,20 +17,24 @@ class PersonType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'label' => 'First name',
                 'attr' => [
                     "placeholder" => 'First name'
                 ]
             ])
-            ->add('lastName')
+            ->add('lastName',TextType::class, [
+                'attr' => [
+                    "placeholder" => 'Last name'
+                ]
+            ])
             ->add('dob', BirthdayType::class)
             ->add('role', ChoiceType::class,[
+                'multiple' => false,
                 'choices' => [
                     'Actor' => 'actor',
                     'Director' => 'director',
                     'Producer' => 'producer',
                     'Other' => 'other'
-                ]
+                ],
             ])
             ->add(
                 'submit',

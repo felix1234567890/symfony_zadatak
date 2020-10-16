@@ -16,7 +16,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Person
 {
-    const ROLES = ['actor', 'director', 'producer', 'other'];
     use Timestampable;
 
     /**
@@ -29,24 +28,26 @@ class Person
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="First name should not be blank")
+     * @Assert\Length(min=2)
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Last name should not be blank")
+     * @Assert\Length(min=2)
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\Date(message="This is not a valid date")
+     * @Assert\Type("\DateTimeInterface",message="This is not a valid date")
      */
     private $dob;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Choice(choices="PersonFixtures::ROLES", message="This is not a valid role")
+     * @Assert\Choice({"actor", "director", "producer", "other"}, message="This is not a valid role")
      */
     private $role;
 

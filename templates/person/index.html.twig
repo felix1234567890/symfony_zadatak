@@ -1,12 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add person{% endblock %}
+{% block title %}People{% endblock %}
 
 {% block body %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-    <h1 class="text-center">Add person</h1>
-{{ form(personForm) }}
+    <div class="row">
+        {% for person in pager %}
+            <div class="col-sm-6 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ person.firstName }} {{ person.lastName }}</h5>
+                        <p class="card-text">Date of birth: {{ person.dob | date("m/d/Y") }}</p>
+                        <p class="card-text">Role: {{ person.role }}</p>
+                        {% if person.getMovies() | length > 0 %}
+                            <p>Movies:</p>
+                            <ul>
+                                {% for movie in person.getMovies() %}
+                                    <p>{{ movie.title }}</p>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
     </div>
-</div>
+
+    <div class="paginator">
+        {% if pager.haveToPaginate %}
+            {{ pagerfanta(pager, 'twitter_bootstrap4' ,{'omitFirstPage': true})  }}
+        {% endif %}
+    </div>
+
 {% endblock %}
