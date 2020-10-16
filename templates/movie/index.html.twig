@@ -3,26 +3,30 @@
 {% block title %}Movies{% endblock %}
 
 {% block body %}
-    {% if movies | length > 0 %}
-    <div class="row">
-        <div class="card-deck">
-            {% for movie in movies %}
-                <div class="card w-50">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{ movie.title }}</h5>
-                        <p class="card-text">{{ movie.description }}</p>
-                        <p>Cast:</p>
-                        <ul>
-                            {% for person in movie.getPeople() %}
-                                <p>{{ person.firstName }} {{ person.lastName }} - {{ person.role }}</p>
-                            {% endfor %}
-                        </ul>
-                    </div>
+{#    {% if movies | length > 0 %}#}
+
+{#        {{ pagerfanta(pager,'twitter_bootstrap4',{'omitFirstPage': true}) }}#}
+            <div class="row">
+                <div class="card-deck">
+                    {% for movie in pager %}
+                        <div class="card w-50">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">{{ movie.title }}</h5>
+                                <p class="card-text">{{ movie.description }}</p>
+                                <p>Cast:</p>
+                                <ul>
+                                    {% for person in movie.getPeople() %}
+                                        <p>{{ person.firstName }} {{ person.lastName }} - {{ person.role }}</p>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        </div>
-    </div>
-    {% else %}
-        <h1 class="text-center">No movies yes. Please add one.</h1>
-    {% endif %}
+            </div>
+        {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager,'twitter_bootstrap4',{'omitFirstPage': true})  }}
+                    {% else %}
+                        <h1 class="text-center">No movies yes. Please add one.</h1>
+        {% endif %}
 {% endblock %}

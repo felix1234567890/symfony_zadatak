@@ -6,6 +6,8 @@ use App\Entity\Movie;
 use App\Form\MovieType;
 use App\Repository\MovieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,10 +19,15 @@ class MovieController extends AbstractController
      * @param MovieRepository $movieRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(MovieRepository $movieRepository)
+    public function index(Request $request, MovieRepository $movieRepository)
     {
-        $movies = $movieRepository->findBy([], ['title' => 'ASC']);
-        return $this->render('movie/index.html.twig', compact('movies'));
+//        $movies = $movieRepository->findBy([], ['title' => 'ASC']);
+        $qb = $movieRepository->findAllQueryBuilder();
+        $pagerfanta = new Pagerfanta(new QueryAdapter($qb));
+        $page = $request->get('page',1);
+        $pagerfanta->setMaxPerPage(1);
+        $pagerfanta->setCurrentPage($page);
+        return $this->render('movie/index.html.twig', ['pager'=>$pagerfanta]);
     }
 
     /**
