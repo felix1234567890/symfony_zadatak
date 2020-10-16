@@ -3,6 +3,10 @@
 {% block title %}Add person{% endblock %}
 
 {% block body %}
-    <h1>Add person</h1>
-{{ form(personForm, ) }}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+    <h1 class="text-center">Add person</h1>
+{{ form(personForm) }}
+    </div>
+</div>
 {% endblock %}

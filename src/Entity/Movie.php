@@ -30,12 +30,14 @@ class Movie
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-
+     * @Assert\NotBlank
+     * @Assert\Length(min=2)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(min=10)
      */
     private $description;
 

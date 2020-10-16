@@ -25,7 +25,7 @@ class MovieController extends AbstractController
         $qb = $movieRepository->findAllQueryBuilder();
         $pagerfanta = new Pagerfanta(new QueryAdapter($qb));
         $page = $request->get('page',1);
-        $pagerfanta->setMaxPerPage(1);
+        $pagerfanta->setMaxPerPage(3);
         $pagerfanta->setCurrentPage($page);
         return $this->render('movie/index.html.twig', ['pager'=>$pagerfanta]);
     }
@@ -39,7 +39,9 @@ class MovieController extends AbstractController
         $form = $this->createForm(MovieType::class, $movie);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $this->addFlash('success', 'Movie successfully created!');
+            $movie = $form->getData();
+            $em->persist($movie);
+            $em->flush();
             return $this->redirectToRoute('movies');
 //            dd($form->getData());
         }

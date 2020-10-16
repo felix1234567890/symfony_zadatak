@@ -3,30 +3,30 @@
 {% block title %}Movies{% endblock %}
 
 {% block body %}
-{#    {% if movies | length > 0 %}#}
-
-{#        {{ pagerfanta(pager,'twitter_bootstrap4',{'omitFirstPage': true}) }}#}
-            <div class="row">
-                <div class="card-deck">
-                    {% for movie in pager %}
-                        <div class="card w-50">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">{{ movie.title }}</h5>
-                                <p class="card-text">{{ movie.description }}</p>
-                                <p>Cast:</p>
-                                <ul>
-                                    {% for person in movie.getPeople() %}
-                                        <p>{{ person.firstName }} {{ person.lastName }} - {{ person.role }}</p>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    {% endfor %}
+<div class="row">
+        {% for movie in pager %}
+            <div class="col-sm-6 p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ movie.title }}</h5>
+                        <p class="card-text">{{ movie.description }}</p>
+                        <p>Cast:</p>
+                        <ul>
+                            {% for person in movie.getPeople() %}
+                                <p>{{ person.firstName }} {{ person.lastName }} - {{ person.role }}</p>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+        {% endfor %}
+    </div>
+
+    <div class="paginator">
         {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager,'twitter_bootstrap4',{'omitFirstPage': true})  }}
-                    {% else %}
-                        <h1 class="text-center">No movies yes. Please add one.</h1>
+            {{ pagerfanta(pager, 'twitter_bootstrap4' ,{'omitFirstPage': true})  }}
         {% endif %}
+    </div>
+
 {% endblock %}
