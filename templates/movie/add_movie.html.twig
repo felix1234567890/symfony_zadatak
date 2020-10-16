@@ -3,11 +3,13 @@
 {% block title %}Add movie{% endblock %}
 
 {% block body %}
-   <h1 class="text-center">Add movie</h1>
+
    <div class="row justify-content-center">
       <div class="col-md-6">
-         {{ form_errors(movieForm) }}
-         {{ form(movieForm,{'attr': {'novalidate': 'novalidate'}}) }}
+{#         {{ form_errors(movieForm) }}#}
+{#         {{ form(movieForm,{'attr': {'novalidate': 'novalidate'}}) }}#}
+         <h1 class="text-center">Add movie</h1>
+         {{ include('movie/_form.html.twig') }}
       </div>
    </div>
 

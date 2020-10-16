@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="72f7df9b-eca5-4401-bd3e-6ac328add06c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MovieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Movie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Person.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Person.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/MovieType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/MovieType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/movie/add_movie.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movie/add_movie.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/movie/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movie/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,14 +131,30 @@
       <workItem from="1602758836815" duration="2126000" />
       <workItem from="1602784499866" duration="713000" />
       <workItem from="1602785456488" duration="2312000" />
-      <workItem from="1602825915394" duration="866000" />
+      <workItem from="1602825915394" duration="1516000" />
+      <workItem from="1602841689679" duration="4231000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
+    <state x="1176" y="263" width="441" height="588" key="#com.intellij.ide.util.MemberChooser" timestamp="1602842275023">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="1176" y="263" width="441" height="588" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1602842275023" />
     <state x="1175" y="259" width="446" height="604" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602784608443">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -133,6 +163,14 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="1146" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602760318124" />
+    <state x="1100" y="273" width="593" height="568" key="NewPhpClassDialog" timestamp="1602842243367">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="1100" y="273" width="593" height="568" key="NewPhpClassDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602842243367" />
+    <state x="1066" y="252" key="run.anything.popup" timestamp="1602843560859">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="1066" y="252" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1602843560859" />
     <state x="1081" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1602756302415">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\Timestampable;
 use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,12 +13,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
  * @ORM\Table(name="movies")
+ * @ORM\HasLifecycleCallbacks
  *
  * @UniqueEntity("title", message="Movie with given title already exists")
- * @UniqueEntity("yearReleased", message="Movie with given year of release already exists")
+ * @UniqueEntity("releaseYear", message="Movie with given year of release already exists")
  */
 class Movie
 {
+    use Timestampable;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -27,7 +30,7 @@ class Movie
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank(message="Title should not be blank")
+
      */
     private $title;
 
@@ -38,7 +41,7 @@ class Movie
 
     /**
      * @ORM\Column(type="integer", length=4, unique=true)
-     * @Assert\Positive()
+     * @Assert\NotBlank(message="Release year should not be blank")
      */
     private $releaseYear;
 

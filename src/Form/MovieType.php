@@ -3,6 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Movie;
+use App\Entity\Person;
+use App\Repository\PersonRepository;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -36,6 +40,17 @@ class MovieType extends AbstractType
                     "min"=> 1900,
                     "max"=>2020,
                 ]
+            ])
+            ->add('people', EntityType::class, [
+                'class' => Person::class,
+                'query_builder' => function (PersonRepository $pr) {
+                    return $pr->createQueryBuilder('p')
+                        ->orderBy('p.firstName', 'ASC');
+                },
+                'choice_label' => function($person) {
+                return $person->getFirstName() . ' ' . $person->getLastName();
+                },
+                'multiple' => true
             ])
             ->add(
                 'submit',
