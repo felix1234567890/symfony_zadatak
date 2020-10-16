@@ -5,4 +5,22 @@
 {% block body %}
     <a href="{{ path('add_movie') }}" class="btn btn-primary">Add movie</a>
     <a href="{{ path('add_person') }}" class="btn btn-secondary">Add person</a>
+    <div class="row">
+        <div class="card-deck">
+            {% for movie in movies %}
+                <div class="card w-50">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ movie.title }}</h5>
+                        <p class="card-text">{{ movie.description }}</p>
+                        <p>Cast:</p>
+                        <ul>
+                            {% for person in movie.getPeople() %}
+                                <p>{{ person.firstName }} {{ person.lastName }} - {{ person.role }}</p>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
