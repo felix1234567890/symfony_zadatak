@@ -19,6 +19,29 @@ class PersonRepository extends ServiceEntityRepository
         parent::__construct($registry, Person::class);
     }
 
+    public function personExistsOnMovie($name, $surname, $title)
+    {
+        return (bool) $this->createQueryBuilder('p')
+            ->andWhere('p.firstName = :name')
+            ->setParameter('name', $name)
+            ->andWhere('p.lastName = :surname')
+            ->setParameter('surname', $surname)
+            ->innerJoin('p.movies', 'm')
+            ->andWhere('m.title = :title')
+            ->setParameter('title', $title)
+            ->getQuery()
+            ->getResult();
+    }
+    public function personExists($name, $surname)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.firstName = :name')
+            ->setParameter('name', $name)
+            ->andWhere('p.lastName = :surname')
+            ->setParameter('surname', $surname)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return PersonFixtures[] Returns an array of PersonFixtures objects
     //  */

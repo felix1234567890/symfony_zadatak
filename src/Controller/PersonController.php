@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Person;
+use App\Form\MemberType;
 use App\Form\PersonType;
 use App\Repository\MovieRepository;
 use App\Repository\PersonRepository;
@@ -50,23 +51,28 @@ class PersonController extends AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function addPerson(Request $request, MovieRepository $movieRepository,EntityManagerInterface $em)
+    public function addPerson(Request $request, MovieRepository $movieRepository,PersonRepository $personRepository,EntityManagerInterface $em)
     {
         $movie = $movieRepository->find($request->get('id'));
-
         $person = new Person();
         $form = $this->createForm(PersonType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()){
             $person = $form->getData();
-            $personExists = $movieRepository->personExists($person->getFirstName(), $person->getLastName());
-            if($personExists){
+            $personExistsOnMovie = $personRepository->personExistsOnMovie($person->getFirstName(), $person->getLastName(),$movie->getTitle() );
+            if($personExistsOnMovie){
                 $form->get('firstName')->addError(new FormError('User with this first and last name exists'));
                 $form->get('lastName')->addError(new FormError('User with this first and last name exists'));
             }
             if($form->isValid()){
-                $movie->addPerson($person);
-                $em->persist($person);
+                $personExists = $personRepository->findOneBy(['firstName' => $person->getFirstName(), 'lastName' => $person->getLastName() ]);
+                if($personExists) {
+                    $movie->addPerson($personExists);
+                }
+                else{
+                    $movie->addPerson($person);
+                    $em->persist($person);
+                }
                 $em->persist($movie);
                 $em->flush();
                 return $this->redirectToRoute('movies');
@@ -75,6 +81,34 @@ class PersonController extends AbstractController
         }
         return $this->render('person/add_person.html.twig', [
             'personForm' => $form->createView()
+        ]);
+    }
+    /**
+     * @Route("/add-existing/{id<[0-9]+>}", name="add_existing", methods={"GET","POST"})
+     * @param Request $request
+     * @param MovieRepository $movieRepository
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function addExisting(Request $request, MovieRepository $movieRepository,EntityManagerInterface $em)
+    {
+        $movie = $movieRepository->find($request->get('id'));
+        $form = $this->createForm(MemberType::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $person = ($form['person']->getData());
+            $form->get('person')->addError(new FormError('Person with this first and last name exists for this movie'));
+            if($form->isValid()){
+                $movie->addPerson($person);
+                $em->persist($movie);
+                $em->flush();
+                return $this->redirectToRoute('movies');
+            }
+
+        }
+
+        return $this->render('person/add_existing.html.twig', [
+            'existingPersonForm' => $form->createView()
         ]);
     }
 }
