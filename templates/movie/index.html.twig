@@ -10,11 +10,11 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ movie.title }}</h5>
                         <p class="card-text">{{ movie.description }}</p>
-                      {% if movie.getPeople() | length > 0 %}
+                      {% if movie.getRoles() | length > 0 %}
                         <p>Cast:</p>
                         <ul>
-                            {% for person in movie.getPeople() %}
-                                <p>{{ person.firstName }} {{ person.lastName }} - {{ person.role }}</p>
+                            {% for role in movie.getRoles() %}
+                                <p>{{ role.person.firstName }} {{ role.person.lastName }} - {{ role.role }}</p>
                             {% endfor %}
                         </ul>
                         {% endif %}
@@ -23,10 +23,8 @@
                     </div>
                 </div>
             </div>
-
         {% endfor %}
     </div>
-
     <div class="paginator">
         {% if pager.haveToPaginate %}
             {{ pagerfanta(pager, 'twitter_bootstrap4' ,{'omitFirstPage': true})  }}

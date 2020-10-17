@@ -45,11 +45,11 @@ class Person
      */
     private $dob;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Choice({"actor", "director", "producer", "other"}, message="This is not a valid role")
-     */
-    private $role;
+//    /**
+//     * @ORM\Column(type="string", length=255)
+//     * @Assert\Choice({"actor", "director", "producer", "other"}, message="This is not a valid role")
+//     */
+//    private $role;
 
     /**
      * @ORM\ManyToMany(targetEntity=Movie::class, inversedBy="people", cascade={"persist"})
@@ -60,6 +60,7 @@ class Person
 *     })
      */
     private $movies;
+
 
     public function __construct()
     {
@@ -105,18 +106,6 @@ class Person
     public function setDob(\DateTimeInterface $dob): self
     {
         $this->dob = $dob;
-
-        return $this;
-    }
-
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
 
         return $this;
     }

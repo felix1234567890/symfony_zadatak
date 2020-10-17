@@ -12,13 +12,14 @@
   <component name="ChangeListManager">
     <list default="true" id="72f7df9b-eca5-4401-bd3e-6ac328add06c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MovieController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PersonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PersonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PersonType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PersonType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MovieRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MovieRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PersonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PersonRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/movie/add_movie.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movie/add_movie.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MovieFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MovieFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PersonFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/PersonFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Movie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Person.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Person.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/movie/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movie/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/person/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/person/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +145,8 @@
       <workItem from="1602852180142" duration="6716000" />
       <workItem from="1602861157744" duration="9970000" />
       <workItem from="1602872515472" duration="716000" />
+      <workItem from="1602910198376" duration="1493000" />
+      <workItem from="1602917092226" duration="3981000" />
     </task>
     <servers />
   </component>
@@ -171,10 +174,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="1175" y="259" width="446" height="604" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602784608443" />
-    <state x="1146" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602871438001">
+    <state x="1146" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602911102013">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="1146" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602871438001" />
+    <state x="1146" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602911102013" />
     <state x="1100" y="273" width="593" height="568" key="NewPhpClassDialog" timestamp="1602842243367">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>

@@ -5,36 +5,41 @@ namespace App\Controller;
 use App\Entity\Movie;
 use App\Form\MoviePersonType;
 use App\Form\MovieType;
-use App\Form\PersonType;
 use App\Repository\MovieRepository;
-use App\Repository\PersonRepository;
+use App\Repository\RoleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MovieController extends AbstractController
 {
     /**
      * @Route("/", name="movies", methods={"GET"})
+     * @param Request $request
      * @param MovieRepository $movieRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param RoleRepository $roleRepository
+     * @return Response
      */
-    public function index(Request $request, MovieRepository $movieRepository)
+    public function index(Request $request, MovieRepository $movieRepository, RoleRepository $roleRepository)
     {
-//        $movies = $movieRepository->findBy([], ['title' => 'ASC']);
         $qb = $movieRepository->findAllQueryBuilder();
         $pagerfanta = new Pagerfanta(new QueryAdapter($qb));
         $page = $request->get('page', 1);
         $pagerfanta->setMaxPerPage(3);
         $pagerfanta->setCurrentPage($page);
-        return $this->render('movie/index.html.twig', ['pager' => $pagerfanta]);
+        return $this->render('movie/index.html.twig', ['pager' => $pagerfanta, 'roleRepo'=>$roleRepository]);
     }
 
     /**
      * @Route("/add", name="add_movie", methods={"GET","POST"})
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
      */
     public function add(Request $request, EntityManagerInterface $em)
     {

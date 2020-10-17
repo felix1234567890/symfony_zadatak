@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h5 class="card-title"> {{ person.firstName }} {{ person.lastName }}</h5>
                         <p class="card-text">Date of birth: {{ person.dob | date("m/d/Y") }}</p>
-                        <p class="card-text">Role: {{ person.role }}</p>
+                        <p class="card-text">Role: {{ person.role.role }}</p>
                         {% if person.getMovies() | length > 0 %}
                             <p>Movies:</p>
                             <ul>

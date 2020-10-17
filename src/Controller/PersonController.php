@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Person;
+use App\Entity\Role;
 use App\Form\MemberType;
 use App\Form\PersonType;
 use App\Repository\MovieRepository;
@@ -19,20 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PersonController extends AbstractController
 {
-//    /**
-//     * @Route("/add-person", name="add_person")
-//     */
-//    public function add()
-//    {
-//        $person = new Person();
-//        $form = $this->createForm(PersonType::class, $person);
-//
-//        return $this->render('person/index.html.twig', [
-//            'personForm' => $form->createView()
-//        ]);
-//    }
     /**
      * @Route("/people",name="people", methods={"GET"})
+     * @param Request $request
+     * @param PersonRepository $personRepository
+     * @return Response
      */
     public function index(Request $request, PersonRepository $personRepository)
     {
@@ -48,6 +40,7 @@ class PersonController extends AbstractController
      * @Route("/add-person/{id<[0-9]+>}", name="add_person", methods={"GET","POST"})
      * @param Request $request
      * @param MovieRepository $movieRepository
+     * @param PersonRepository $personRepository
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
@@ -83,28 +76,37 @@ class PersonController extends AbstractController
             'personForm' => $form->createView()
         ]);
     }
+
     /**
      * @Route("/add-existing/{id<[0-9]+>}", name="add_existing", methods={"GET","POST"})
      * @param Request $request
      * @param MovieRepository $movieRepository
+     * @param PersonRepository $personRepository
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function addExisting(Request $request, MovieRepository $movieRepository,EntityManagerInterface $em)
+    public function addExisting(Request $request, MovieRepository $movieRepository,PersonRepository $personRepository,EntityManagerInterface $em)
     {
         $movie = $movieRepository->find($request->get('id'));
+        $role = new Role();
         $form = $this->createForm(MemberType::class);
         $form->handleRequest($request);
         if($form->isSubmitted()){
-            $person = ($form['person']->getData());
-            $form->get('person')->addError(new FormError('Person with this first and last name exists for this movie'));
+            $person = $form['person']->getData();
+            $personExists = $personRepository->personExistsOnMovie($person->getFirstName(), $person->getLastName(),$movie->getTitle() );
+            if($personExists){
+                $form->get('person')->addError(new FormError('Person with this first and last name exists for this movie'));
+            }
             if($form->isValid()){
-                $movie->addPerson($person);
+                $role->setPerson($person);
+                $role->setRole($form->get('role')->getData());
+//                $movie->addPerson($person);
+                $movie->addRole($role);
+                $em->persist($role);
                 $em->persist($movie);
                 $em->flush();
                 return $this->redirectToRoute('movies');
             }
-
         }
 
         return $this->render('person/add_existing.html.twig', [

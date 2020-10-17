@@ -47,16 +47,21 @@ class Movie
      */
     private $releaseYear;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity=Person::class, mappedBy="movies")
+//     */
+//    private $people;
+
     /**
-     * @ORM\ManyToMany(targetEntity=Person::class, mappedBy="movies")
+     * @ORM\ManyToMany(targetEntity=Role::class, mappedBy="movies")
      */
-    private $people;
+    private $roles;
 
     public function __construct()
     {
-        $this->people = new ArrayCollection();
+//        $this->people = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -99,29 +104,57 @@ class Movie
         return $this;
     }
 
+//    /**
+//     * @return Collection|Person[]
+//     */
+//    public function getPeople(): Collection
+//    {
+//        return $this->people;
+//    }
+//
+//    public function addPerson(Person $person): self
+//    {
+//        if (!$this->people->contains($person)) {
+//            $this->people[] = $person;
+//            $person->addMovie($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removePerson(Person $person): self
+//    {
+//        if ($this->people->contains($person)) {
+//            $this->people->removeElement($person);
+//            $person->removeMovie($this);
+//        }
+//
+//        return $this;
+//    }
+
     /**
-     * @return Collection|Person[]
+     * @return Collection|Role[]
      */
-    public function getPeople(): Collection
+    public function getRoles(): Collection
     {
-        return $this->people;
+        return $this->roles;
     }
 
-    public function addPerson(Person $person): self
+    public function addRole(Role $role): self
     {
-        if (!$this->people->contains($person)) {
-            $this->people[] = $person;
-            $person->addMovie($this);
+        if (!$this->roles->contains($role)) {
+            $this->roles[] = $role;
+            $role->addMovie($this);
         }
 
         return $this;
     }
 
-    public function removePerson(Person $person): self
+    public function removeRole(Role $role): self
     {
-        if ($this->people->contains($person)) {
-            $this->people->removeElement($person);
-            $person->removeMovie($this);
+        if ($this->roles->contains($role)) {
+            $this->roles->removeElement($role);
+            $role->removeMovie($this);
         }
 
         return $this;
