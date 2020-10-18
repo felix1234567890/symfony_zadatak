@@ -13,13 +13,7 @@
     <list default="true" id="72f7df9b-eca5-4401-bd3e-6ac328add06c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PersonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PersonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Person.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Person.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PersonType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RolePersonType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MovieRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MovieRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PersonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PersonRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/movie/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movie/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/person/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/person/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RolePersonType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RolePersonType.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +141,8 @@
       <workItem from="1602872515472" duration="716000" />
       <workItem from="1602910198376" duration="1493000" />
       <workItem from="1602917092226" duration="4366000" />
-      <workItem from="1603005625342" duration="3935000" />
+      <workItem from="1603005625342" duration="4724000" />
+      <workItem from="1603030129432" duration="619000" />
     </task>
     <servers />
   </component>
@@ -191,9 +186,9 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="1066" y="252" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1603006884962" />
-    <state x="1081" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1602756302415">
+    <state x="1081" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1603010610425">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="1081" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1602756302415" />
+    <state x="1081" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1603010610425" />
   </component>
 </project>

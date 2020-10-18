@@ -52,17 +52,16 @@ class PersonController extends AbstractController
         $role = new Role();
         $form = $this->createForm(RolePersonType::class);
         $form->handleRequest($request);
-
         if ($form->isSubmitted()){
-            $person->setFirstName($form['firstName']->getData());
-            $person->setLastName($form['lastName']->getData());
-            $person->setDob($form['dob']->getData());
-            $personExistsOnMovie = $movieRepository->personExistsOnMovie($person->getFirstName(), $person->getLastName(),$movie->getTitle() );
+            $personExistsOnMovie = $movieRepository->personExistsOnMovie($form['firstName']->getData(), $form['lastName']->getData(),$movie->getTitle() );
             if($personExistsOnMovie){
                 $form->get('firstName')->addError(new FormError('User with this first and last name exists for this movie'));
                 $form->get('lastName')->addError(new FormError('User with this first and last name exists for this movie'));
             }
             if($form->isValid()){
+                $person->setFirstName($form['firstName']->getData());
+                $person->setLastName($form['lastName']->getData());
+                $person->setDob($form['dob']->getData());
                 $personExists = $personRepository->findOneBy(['firstName' => $form['firstName']->getData(), 'lastName' => $form['lastName']->getData() ]);
                 if($personExists) {
                     $role->setRole($form['role']->getData());
