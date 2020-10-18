@@ -23,6 +23,21 @@ class MovieRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m');
     }
+
+    public function personExistsOnMovie($name, $surname, $title)
+    {
+        return (bool) $this->createQueryBuilder('m')
+            ->andWhere('m.title = :title')
+            ->setParameter('title', $title)
+            ->innerJoin('m.roles', 'r')
+            ->innerJoin('r.person', 'p')
+            ->andWhere('p.firstName = :firstName')
+            ->setParameter('firstName', $name)
+            ->andWhere('p.lastName = :lastName')
+            ->setParameter('lastName', $surname)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Movie[] Returns an array of Movie objects
     //  */

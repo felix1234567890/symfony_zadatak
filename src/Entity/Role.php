@@ -29,7 +29,7 @@ class Role
     private $role;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Person::class)
+     * @ORM\ManyToOne(targetEntity=Person::class, inversedBy="roles")
      * @ORM\JoinColumn(nullable=false)
      */
     private $person;

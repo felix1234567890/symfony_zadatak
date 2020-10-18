@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Person;
 use App\Entity\Role;
 use App\Form\MemberType;
-use App\Form\PersonType;
+use App\Form\RolePersonType;
 use App\Repository\MovieRepository;
 use App\Repository\PersonRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -44,29 +44,41 @@ class PersonController extends AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function addPerson(Request $request, MovieRepository $movieRepository,PersonRepository $personRepository,EntityManagerInterface $em)
+    public function addPersonWithRole(Request $request, MovieRepository $movieRepository,PersonRepository $personRepository,EntityManagerInterface $em)
     {
         $movie = $movieRepository->find($request->get('id'));
         $person = new Person();
-        $form = $this->createForm(PersonType::class);
+
+        $role = new Role();
+        $form = $this->createForm(RolePersonType::class);
         $form->handleRequest($request);
+
         if ($form->isSubmitted()){
-            $person = $form->getData();
-            $personExistsOnMovie = $personRepository->personExistsOnMovie($person->getFirstName(), $person->getLastName(),$movie->getTitle() );
+            $person->setFirstName($form['firstName']->getData());
+            $person->setLastName($form['lastName']->getData());
+            $person->setDob($form['dob']->getData());
+            $personExistsOnMovie = $movieRepository->personExistsOnMovie($person->getFirstName(), $person->getLastName(),$movie->getTitle() );
             if($personExistsOnMovie){
-                $form->get('firstName')->addError(new FormError('User with this first and last name exists'));
-                $form->get('lastName')->addError(new FormError('User with this first and last name exists'));
+                $form->get('firstName')->addError(new FormError('User with this first and last name exists for this movie'));
+                $form->get('lastName')->addError(new FormError('User with this first and last name exists for this movie'));
             }
             if($form->isValid()){
-                $personExists = $personRepository->findOneBy(['firstName' => $person->getFirstName(), 'lastName' => $person->getLastName() ]);
+                $personExists = $personRepository->findOneBy(['firstName' => $form['firstName']->getData(), 'lastName' => $form['lastName']->getData() ]);
                 if($personExists) {
-                    $movie->addPerson($personExists);
+                    $role->setRole($form['role']->getData());
+                    $role->setPerson($personExists);
+                    $movie->addRole($role);
+                    $em->persist($role);
+                    $em->persist($movie);
                 }
                 else{
-                    $movie->addPerson($person);
+                    $role->setRole($form['role']->getData());
                     $em->persist($person);
+                    $role->setPerson($person);
+                    $movie->addRole($role);
+                    $em->persist($role);
+                    $em->persist($movie);
                 }
-                $em->persist($movie);
                 $em->flush();
                 return $this->redirectToRoute('movies');
             }
@@ -85,7 +97,7 @@ class PersonController extends AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function addExisting(Request $request, MovieRepository $movieRepository,PersonRepository $personRepository,EntityManagerInterface $em)
+    public function addExistingPersonWithRole(Request $request, MovieRepository $movieRepository,PersonRepository $personRepository,EntityManagerInterface $em)
     {
         $movie = $movieRepository->find($request->get('id'));
         $role = new Role();
@@ -93,14 +105,13 @@ class PersonController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted()){
             $person = $form['person']->getData();
-            $personExists = $personRepository->personExistsOnMovie($person->getFirstName(), $person->getLastName(),$movie->getTitle() );
+            $personExists = $movieRepository->personExistsOnMovie($person->getFirstName(), $person->getLastName(),$movie->getTitle() );
             if($personExists){
                 $form->get('person')->addError(new FormError('Person with this first and last name exists for this movie'));
             }
             if($form->isValid()){
                 $role->setPerson($person);
                 $role->setRole($form->get('role')->getData());
-//                $movie->addPerson($person);
                 $movie->addRole($role);
                 $em->persist($role);
                 $em->persist($movie);

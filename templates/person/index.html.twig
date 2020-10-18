@@ -8,14 +8,16 @@
             <div class="col-sm-6 p-2">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> {{ person.firstName }} {{ person.lastName }}</h5>
-                        <p class="card-text">Date of birth: {{ person.dob | date("m/d/Y") }}</p>
-                        <p class="card-text">Role: {{ person.role.role }}</p>
-                        {% if person.getMovies() | length > 0 %}
-                            <p>Movies:</p>
+                        <h5 class="card-title font-weight-bold"> {{ person.firstName }} {{ person.lastName }}</h5>
+                        <p class="card-text">Date of birth: {{ person.dob | date("d.m.Y") }}</p>
+{#                        <p class="card-text">Role: {{ person.role.role }}</p>#}
+                        {% if person.getRoles() | length > 0 %}
+                            <p class="font-weight-bold">Movies:</p>
                             <ul>
-                                {% for movie in person.getMovies() %}
-                                    <p>{{ movie.title }}</p>
+                                {% for role in person.getRoles() %}
+                                    {% for movie in role.movies %}
+                                    <p>{{ movie.title }} - {{ role.role }}</p>
+                                        {% endfor %}
                                 {% endfor %}
                             </ul>
                         {% endif %}

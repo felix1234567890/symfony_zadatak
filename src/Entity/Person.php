@@ -45,26 +45,26 @@ class Person
      */
     private $dob;
 
-//    /**
-//     * @ORM\Column(type="string", length=255)
-//     * @Assert\Choice({"actor", "director", "producer", "other"}, message="This is not a valid role")
-//     */
-//    private $role;
-
     /**
-     * @ORM\ManyToMany(targetEntity=Movie::class, inversedBy="people", cascade={"persist"})
-     * @ORM\JoinTable(name="person_movie", joinColumns={
-     @ORM\JoinColumn(name="person_id", referencedColumnName="id")
-*     }, inverseJoinColumns={
-     @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
-*     })
+     * @ORM\OneToMany(targetEntity=Role::class, mappedBy="person")
      */
-    private $movies;
+    private $roles;
+
+//    /**
+//     * @ORM\ManyToMany(targetEntity=Movie::class, inversedBy="people", cascade={"persist"})
+//     * @ORM\JoinTable(name="person_movie", joinColumns={
+//     @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+//*     }, inverseJoinColumns={
+//     @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
+//*     })
+//     */
+//    private $movies;
 
 
     public function __construct()
     {
-        $this->movies = new ArrayCollection();
+//        $this->movies = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
 
 
@@ -110,29 +110,38 @@ class Person
         return $this;
     }
 
+//    /**
+//     * @return Collection|Movie[]
+//     */
+//    public function getMovies(): Collection
+//    {
+//        return $this->movies;
+//    }
+//
+//    public function addMovie(Movie $movie): self
+//    {
+//        if (!$this->movies->contains($movie)) {
+//            $this->movies[] = $movie;
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeMovie(Movie $movie): self
+//    {
+//        if ($this->movies->contains($movie)) {
+//            $this->movies->removeElement($movie);
+//        }
+//
+//        return $this;
+//    }
+
     /**
-     * @return Collection|Movie[]
+     * @return Collection|Role[]
      */
-    public function getMovies(): Collection
+    public function getRoles(): Collection
     {
-        return $this->movies;
+        return $this->roles;
     }
 
-    public function addMovie(Movie $movie): self
-    {
-        if (!$this->movies->contains($movie)) {
-            $this->movies[] = $movie;
-        }
-
-        return $this;
-    }
-
-    public function removeMovie(Movie $movie): self
-    {
-        if ($this->movies->contains($movie)) {
-            $this->movies->removeElement($movie);
-        }
-
-        return $this;
-    }
 }

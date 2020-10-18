@@ -12,12 +12,12 @@
   <component name="ChangeListManager">
     <list default="true" id="72f7df9b-eca5-4401-bd3e-6ac328add06c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MovieController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PersonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PersonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MovieFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/MovieFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PersonFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/PersonFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Movie.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Person.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Person.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/PersonType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RolePersonType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/MovieRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MovieRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/PersonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PersonRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/movie/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movie/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/person/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/person/index.html.twig" afterDir="false" />
     </list>
@@ -146,7 +146,8 @@
       <workItem from="1602861157744" duration="9970000" />
       <workItem from="1602872515472" duration="716000" />
       <workItem from="1602910198376" duration="1493000" />
-      <workItem from="1602917092226" duration="3981000" />
+      <workItem from="1602917092226" duration="4366000" />
+      <workItem from="1603005625342" duration="3935000" />
     </task>
     <servers />
   </component>
@@ -166,14 +167,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1176" y="263" width="441" height="588" key="#com.intellij.ide.util.MemberChooser" timestamp="1602842275023">
+    <state x="1176" y="263" width="441" height="595" key="#com.intellij.ide.util.MemberChooser" timestamp="1603008417039">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="1176" y="263" width="441" height="588" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1602842275023" />
-    <state x="1175" y="259" width="446" height="604" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602784608443">
+    <state x="1176" y="263" width="441" height="595" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1603008417039" />
+    <state x="1175" y="259" width="446" height="604" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603007771837">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="1175" y="259" width="446" height="604" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602784608443" />
+    <state x="1175" y="259" width="446" height="604" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1603007771837" />
     <state x="1146" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602911102013">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -182,10 +183,14 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="1100" y="273" width="593" height="568" key="NewPhpClassDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602842243367" />
-    <state x="1066" y="252" width="672" height="677" key="run.anything.popup" timestamp="1602869604235">
+    <state x="606" y="167" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603008410352">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="1066" y="252" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1602869604235" />
+    <state x="606" y="167" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1603008410352" />
+    <state x="1066" y="252" width="672" height="677" key="run.anything.popup" timestamp="1603006884962">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="1066" y="252" width="672" height="677" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1603006884962" />
     <state x="1081" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1602756302415">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
