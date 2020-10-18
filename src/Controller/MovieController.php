@@ -3,13 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Movie;
-use App\Form\MoviePersonType;
 use App\Form\MovieType;
 use App\Repository\MovieRepository;
-use App\Repository\RoleRepository;
+use App\Services\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
-use Pagerfanta\Doctrine\ORM\QueryAdapter;
-use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,17 +19,14 @@ class MovieController extends AbstractController
      * @Route("/", name="movies", methods={"GET"})
      * @param Request $request
      * @param MovieRepository $movieRepository
-     * @param RoleRepository $roleRepository
      * @return Response
      */
-    public function index(Request $request, MovieRepository $movieRepository, RoleRepository $roleRepository)
+    public function index(Request $request, MovieRepository $movieRepository)
     {
         $qb = $movieRepository->findAllQueryBuilder();
-        $pagerfanta = new Pagerfanta(new QueryAdapter($qb));
         $page = $request->get('page', 1);
-        $pagerfanta->setMaxPerPage(3);
-        $pagerfanta->setCurrentPage($page);
-        return $this->render('movie/index.html.twig', ['pager' => $pagerfanta, 'roleRepo'=>$roleRepository]);
+        $paginator = new Paginator($qb, $page,2);
+        return $this->render('movie/index.html.twig', ['pager' => $paginator->pagerfanta]);
     }
 
     /**

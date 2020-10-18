@@ -8,9 +8,8 @@ use App\Form\MemberType;
 use App\Form\RolePersonType;
 use App\Repository\MovieRepository;
 use App\Repository\PersonRepository;
+use App\Services\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
-use Pagerfanta\Doctrine\ORM\QueryAdapter;
-use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -29,11 +28,9 @@ class PersonController extends AbstractController
     public function index(Request $request, PersonRepository $personRepository)
     {
         $qb = $personRepository->createQueryBuilder('p');
-        $pagerfanta = new Pagerfanta(new QueryAdapter($qb));
         $page = $request->get('page', 1);
-        $pagerfanta->setMaxPerPage(3);
-        $pagerfanta->setCurrentPage($page);
-        return $this->render('person/index.html.twig', ['pager' => $pagerfanta]);
+        $paginator = new Paginator($qb,$page, 2);
+        return $this->render('person/index.html.twig', ['pager' => $paginator->pagerfanta]);
     }
 
     /**
@@ -48,7 +45,6 @@ class PersonController extends AbstractController
     {
         $movie = $movieRepository->find($request->get('id'));
         $person = new Person();
-
         $role = new Role();
         $form = $this->createForm(RolePersonType::class);
         $form->handleRequest($request);
