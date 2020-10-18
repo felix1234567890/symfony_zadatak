@@ -93,11 +93,10 @@ class PersonController extends AbstractController
      * @Route("/add-existing/{id<[0-9]+>}", name="add_existing", methods={"GET","POST"})
      * @param Request $request
      * @param MovieRepository $movieRepository
-     * @param PersonRepository $personRepository
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function addExistingPersonWithRole(Request $request, MovieRepository $movieRepository,PersonRepository $personRepository,EntityManagerInterface $em)
+    public function addExistingPersonWithRole(Request $request, MovieRepository $movieRepository,EntityManagerInterface $em)
     {
         $movie = $movieRepository->find($request->get('id'));
         $role = new Role();
@@ -119,7 +118,6 @@ class PersonController extends AbstractController
                 return $this->redirectToRoute('movies');
             }
         }
-
         return $this->render('person/add_existing.html.twig', [
             'existingPersonForm' => $form->createView()
         ]);

@@ -51,6 +51,5 @@ class RolePersonType extends AbstractType
     }
 
     public function configureOptions(OptionsResolver $resolver)
-    {
-    }
+    {}
 }

@@ -30,7 +30,7 @@ class Movie
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank
+     * @Assert\NotBlank()
      * @Assert\Length(min=2)
      */
     private $title;
@@ -47,11 +47,6 @@ class Movie
      */
     private $releaseYear;
 
-//    /**
-//     * @ORM\ManyToMany(targetEntity=Person::class, mappedBy="movies")
-//     */
-//    private $people;
-
     /**
      * @ORM\ManyToMany(targetEntity=Role::class, mappedBy="movies")
      */
@@ -59,7 +54,6 @@ class Movie
 
     public function __construct()
     {
-//        $this->people = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
 
@@ -103,34 +97,6 @@ class Movie
 
         return $this;
     }
-
-//    /**
-//     * @return Collection|Person[]
-//     */
-//    public function getPeople(): Collection
-//    {
-//        return $this->people;
-//    }
-//
-//    public function addPerson(Person $person): self
-//    {
-//        if (!$this->people->contains($person)) {
-//            $this->people[] = $person;
-//            $person->addMovie($this);
-//        }
-//
-//        return $this;
-//    }
-//
-//    public function removePerson(Person $person): self
-//    {
-//        if ($this->people->contains($person)) {
-//            $this->people->removeElement($person);
-//            $person->removeMovie($this);
-//        }
-//
-//        return $this;
-//    }
 
     /**
      * @return Collection|Role[]

@@ -52,7 +52,6 @@ class MovieController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('movies');
         }
-
         return $this->render('movie/add_movie.html.twig', [
             'movieForm' => $form->createView()
         ]);

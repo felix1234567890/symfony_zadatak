@@ -50,20 +50,8 @@ class Person
      */
     private $roles;
 
-//    /**
-//     * @ORM\ManyToMany(targetEntity=Movie::class, inversedBy="people", cascade={"persist"})
-//     * @ORM\JoinTable(name="person_movie", joinColumns={
-//     @ORM\JoinColumn(name="person_id", referencedColumnName="id")
-//*     }, inverseJoinColumns={
-//     @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
-//*     })
-//     */
-//    private $movies;
-
-
     public function __construct()
     {
-//        $this->movies = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
 
