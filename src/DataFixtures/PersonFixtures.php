@@ -18,14 +18,12 @@ class PersonFixtures extends Fixture
        $person1->setFirstName("Ivan");
        $person1->setLastName("Kovač");
        $person1->setDob(new DateTime('2000-10-01'));
-//       $person1->setRole('actor');
        $manager->persist($person1);
 
         $person2 = new Person();
         $person2->setFirstName("Marko");
         $person2->setLastName("Maric");
         $person2->setDob(new DateTime("1994-08-12"));
-//        $person2->setRole('director');
         $manager->persist($person2);
         $manager->flush();
         $this->addReference(self::FIRST_PERSON, $person1);

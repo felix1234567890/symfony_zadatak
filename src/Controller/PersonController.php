@@ -55,29 +55,24 @@ class PersonController extends AbstractController
                 $form->get('lastName')->addError(new FormError('User with this first and last name exists for this movie'));
             }
             if($form->isValid()){
-                $person->setFirstName($form['firstName']->getData());
-                $person->setLastName($form['lastName']->getData());
-                $person->setDob($form['dob']->getData());
+                $role->setRole($form['role']->getData());
                 $personExists = $personRepository->findOneBy(['firstName' => $form['firstName']->getData(), 'lastName' => $form['lastName']->getData() ]);
                 if($personExists) {
-                    $role->setRole($form['role']->getData());
                     $role->setPerson($personExists);
-                    $movie->addRole($role);
-                    $em->persist($role);
-                    $em->persist($movie);
                 }
                 else{
-                    $role->setRole($form['role']->getData());
+                    $person->setFirstName($form['firstName']->getData());
+                    $person->setLastName($form['lastName']->getData());
+                    $person->setDob($form['dob']->getData());
                     $em->persist($person);
                     $role->setPerson($person);
-                    $movie->addRole($role);
-                    $em->persist($role);
-                    $em->persist($movie);
                 }
+                $movie->addRole($role);
+                $em->persist($role);
+                $em->persist($movie);
                 $em->flush();
                 return $this->redirectToRoute('movies');
             }
-
         }
         return $this->render('person/add_person.html.twig', [
             'personForm' => $form->createView()
